@@ -1,0 +1,22 @@
+version: 2.1  # CircleCI configuration version
+
+# Define Jobs
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.8  # Use a Docker image with Python 3.8
+    steps:
+      - checkout  # Checkout the source code
+      - run:
+          name: Install dependencies
+          command: pip install -r requirements.txt  # Install dependencies
+      - run:
+          name: Run tests
+          command: pytest  # Run tests using pytest
+
+# Define the Workflow
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build  # Run the 'build' job
